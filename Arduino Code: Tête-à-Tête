@@ -1,0 +1,74 @@
+int switch2;
+int switch3;
+int switch4;
+int switch5;
+int switch6;
+int switch7;
+int switch8;
+int switch9;
+int switch10;
+int switch11;
+
+void setup() {
+
+  Serial.begin(9600);
+  pinMode(2, INPUT_PULLUP);
+  pinMode(3, INPUT_PULLUP);
+  pinMode(4, INPUT_PULLUP);
+  pinMode(5, INPUT_PULLUP);
+  pinMode(6, INPUT_PULLUP);
+  pinMode(7, INPUT_PULLUP);
+  pinMode(8, INPUT_PULLUP);
+  pinMode(9, INPUT_PULLUP);
+  pinMode(10, INPUT_PULLUP);
+   pinMode(11, INPUT_PULLUP);
+  pinMode(13, OUTPUT);
+}
+void loop() {
+
+  int switch2 = digitalRead(2);
+  int switch3 = digitalRead(3);
+  int switch4 = digitalRead(4);
+  int  switch5 = digitalRead(5);
+  int switch6 = digitalRead(6);
+  int switch7 = digitalRead(7);
+  int switch8 = digitalRead(8);
+  int switch9 = digitalRead(9);
+  int switch10 = digitalRead(10);
+  int  switch11 = digitalRead(11);
+
+  // print out the switch value
+  //Serial.print(switch2val);
+
+  Serial.print(switch2);
+  Serial.print(",");
+  Serial.print(switch3);
+  Serial.print(",");
+  Serial.print(switch4);
+  Serial.print(",");
+  Serial.print(switch5);
+  Serial.print(",");
+  Serial.print(switch6);
+  Serial.print(",");
+  Serial.print(switch7);
+  Serial.print(",");
+  Serial.print(switch8);
+  Serial.print(",");
+  Serial.print(switch9);
+  Serial.print(",");
+  Serial.print(switch10);
+  Serial.print(",");
+  Serial.print(switch11);
+  Serial.print(",");
+  Serial.print("\t");
+  Serial.println();
+
+  if (switch2 == LOW | switch3 == LOW | switch4 == LOW | switch5 == LOW | switch6 == LOW | switch7 == LOW |  switch8 == LOW  |  switch9 == LOW |  switch10 == LOW |  switch11 == LOW) {
+    digitalWrite(13, HIGH);
+  } else {
+    digitalWrite(13, LOW);
+  }
+
+
+  delay(100); // the delay is necessary for the serial communication
+}
