@@ -1,0 +1,237 @@
+import processing.serial.*; // import the Processing serial library
+Serial myPort; 
+
+int switch1;
+int switch2;
+int switch3;
+int switch4;
+int switch5;
+int switch6;
+int switch7;
+int switch8;
+int switch9;
+int switch10;
+
+PFont font;
+PImage img;
+import processing.sound.*;
+SoundFile file;
+float song;
+SoundFile file1;
+SoundFile file2;
+SoundFile file3;
+SoundFile file4;
+SoundFile file5;
+SoundFile file6;
+SoundFile file7;
+SoundFile file8;
+
+void setup() {
+
+  printArray(Serial.list());
+  String portName = Serial.list()[0];
+  myPort = new Serial(this, portName, 9600);
+  myPort.bufferUntil('\n');
+
+  size(1200, 800);
+  img = loadImage("uttam.JPG");
+  file = new SoundFile(this, "song.mp3");
+  file1 = new SoundFile(this, "1Do.wav");
+  file2 = new SoundFile(this, "2re.wav");
+  file3 = new SoundFile(this, "3mi.wav");
+  file4 = new SoundFile(this, "4Fa.wav");
+  file5 = new SoundFile(this, "5so.wav");
+  file6 = new SoundFile(this, "6la.wav");
+  file7 = new SoundFile(this, "7ti.wav");
+  file8 = new SoundFile(this, "beep.wav");
+
+  file.play();
+  file.loop();
+  font = loadFont("Playboy.vlw");
+}
+void draw() {
+  //pink
+  background(255, 151, 213);
+  noStroke();
+  image(img, 0, 0);
+  file.amp(1);
+
+  //red1 left
+  if (switch1==0) {
+    fill(255, 0, 0);
+    ellipse(500, 400, 170, 170);
+    file.amp(0.1);
+    file1.play(1);
+    
+  } else {
+    fill(255);    
+    ellipse(500, 400, 150, 150);
+  }
+
+  //red2 right
+  if (switch2==0) {
+    textFont(font, 24);
+    fill(235, 0, 70);
+    text("Wording begins", 880, 750);
+    fill(255, 0, 0);
+    ellipse(700, 400, 170, 170);
+    file.amp(0.1);
+    file2.play();
+    file2.amp(1);
+    
+  } else {
+    fill(255);
+    ellipse(700, 400, 150, 150);
+  }
+
+  //Orange left
+  if (switch3==0) {
+    textFont(font, 24);
+    fill(235, 0, 70);
+    text("Sentencing begins", 880, 750);
+    fill(255, 121, 17);
+    ellipse(240, 240, 170, 170);
+    file.amp(0.1);
+    file3.play();
+    file3.amp(1);
+    
+  } else {
+    fill(255);
+    ellipse(240, 240, 150, 150);
+  }
+
+  //Orange2 right
+  if (switch4==0) {
+    textFont(font, 24);
+    fill(235, 0, 70);
+    text("Sentencing ends", 880, 750);
+    fill(255, 121, 17);
+    ellipse(440, 160, 170, 170);
+    file.amp(0.1);
+    file4.play();
+    file4.amp(1);
+    
+  } else {
+    fill(255);
+    ellipse(440, 160, 150, 150);
+  }
+
+
+  //Yellow1 Ellipse left
+  if (switch5==0) {
+    fill(255, 239, 0);
+    ellipse(760, 160, 170, 170);
+    file.amp(0.1);
+    file5.play();
+    file5.amp(0.4);
+    
+  } else {
+    fill(255);
+    ellipse(760, 160, 150, 150);
+  }
+
+  //Yellow2 ellipse right 
+  if (switch6==0) {
+    textFont(font, 24);
+    fill(235, 0, 70);
+    text("Wording ends", 880, 750);
+    file.amp(0.1);
+    file6.play();
+    file6.amp(0.4);
+
+    fill(255, 239, 0);
+    ellipse(960, 240, 170, 170);
+  } else {
+    fill(255);
+    ellipse(960, 240, 150, 150);
+  }
+
+  //Blue1 left
+  if (switch7==0) {
+    fill(60, 100, 255);
+    ellipse(240, 560, 150, 150);
+    file.amp(0.1);
+    file7.play();
+    file7.amp(0.4);
+    
+  } else {
+    fill(255);
+    ellipse(240, 560, 150, 150);
+  }
+
+  //Blue2 right
+  if (switch8==0) {
+    textFont(font, 24);
+    fill(235, 0, 70);
+    text("Questioning", 880, 750);
+    fill(60, 100, 255);
+    ellipse(440, 640, 150, 150);
+    file.amp(0.1);
+    file1.play();
+    file1.amp(0.4);
+    
+  } else {
+    fill(255);
+    ellipse(440, 640, 150, 150);
+  }
+
+  //Green1 left ellipse
+  if (switch9==0) {
+    textFont(font, 24);
+    fill(235, 0, 70);
+    text("Odd Numbers", 880, 750);
+    fill(26, 255, 110);
+    ellipse(760, 640, 170, 170);
+    file.amp(0.1);
+    file8.play();
+    file8.amp(0.5);
+    
+  } else {
+    fill(255);
+    ellipse(760, 640, 150, 150);
+  }
+
+  //Green2 right ellipse
+  if (switch10==0) {
+    textFont(font, 24);
+    fill(235, 0, 70);
+    text("Even Numbers", 880, 750);
+    fill(26, 255, 110);
+    ellipse(960, 560, 170, 170);
+    file.amp(0.1);
+    file8.play();
+    file8.amp(0.5);
+    
+  } else {
+    fill(255);
+    ellipse(960, 560, 150, 150);
+    
+  }
+}
+void serialEvent(Serial myPort) {
+  // read the serial buffer:
+  String myString = myPort.readStringUntil('\n');
+  if (myString != null) {
+    // println(myString);
+    myString = trim(myString);
+
+    int sensors[] = int(split(myString, ','));
+    for (int sensorNum = 0; sensorNum < sensors.length; sensorNum++) {
+      print("Sensor " + sensorNum + ": " + sensors[sensorNum] + "\t");
+    }
+    println();
+    switch1 = sensors[0];  
+    switch2 = sensors[1]; 
+    switch3 = sensors[2];
+    switch4 = sensors[3];  
+    switch5 = sensors[4]; 
+
+    switch6 = sensors[5];
+    switch7 = sensors[6];
+    switch8 = sensors[7];  
+    switch9 = sensors[8]; 
+    switch10 = sensors[9];
+  }
+
+  delay(100);
+}
